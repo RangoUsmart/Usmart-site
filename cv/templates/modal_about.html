@@ -1,0 +1,11 @@
+{% load static %}
+    <!-- Вікно про мене -->
+<div class="card text-center text">
+    <div class="row card-body">
+        <div class="col-12 ">                                
+        {% autoescape off %}
+        {{maininfo.user_subscribe|linebreaksbr}}
+        {% endautoescape %}
+        </div>
+    </div>
+</div>

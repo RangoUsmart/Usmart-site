@@ -1,0 +1,33 @@
+{% load static %}
+<!-- параграф Досвід -->
+<div class="panel-timeline">
+    {% for exp in mainexp%}
+    <div class="timeline">
+        <div class="timeline-content">
+            <span class="date">
+                <span class="year">{{ exp.work_start.year}}</span>
+                <span class="month">{{ exp.diff_date}} років</span>
+                <span class="year">{{ exp.work_end.year}}</span>
+            </span>
+            <h4 class="title"><span class="glyphicon glyphicon-heart-empty"></span>
+                {{ exp.work_company}}
+            </h4>
+            <p class="description"> {{ exp.work_position}}, {{ exp.work_description}}</p>
+        </div>
+    </div>
+    {%endfor%}
+    
+</div>
+
+{% comment %} <div class="timeline">
+    <div class="timeline-content">
+        <span class="date">
+            <span class="year">2021</span>
+            <span class="month">-</span>
+            <span class="year">2014</span>
+        </span>
+        <h2 class="title"><span class="glyphicon glyphicon-heart-empty"></span>ЧБР
+        </h2>
+        <p class="description">Macdonalds</p>
+    </div>
+</div> {% endcomment %}

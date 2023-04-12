@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% block title %}Проекти
+{% endblock title %} 
+{% comment %} {% block header %}проекти{% endblock header %} {% endcomment %}
+
+{% block content %}
+<div class="container-fluid">
+  <div class="row p-0 m-0 bg-light">
+  <div class="col-md-9">
+      <h3 class="text-left">{% if category %}{{ category.name }}{% else %}Всі проекти{% endif %}</h3>         
+  </div>
+  <div class="col-md-3">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 m-0">
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>    
+          <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
+            <ul class="navbar-nav mx-auto mr-auto mt-0 mt-lg-0">
+              
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-bars" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fa fa-calculator" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </div>
+      </nav>
+  </div>
+</div>
+<div class="container-fluid">
+
+  <div class="row p-2 m-0">
+    <div class="col-md-2 border">
+      <h3>Меню</h3>
+        <a href="{% url 'post_new' %}" class="btn btn-outline-success"><span class="glyphicon glyphicon-plus"></span>Додати проект</a>
+      <p>Навігація</p>
+    </div>
+    <div class="col-md-10 border">
+      <div class="row ">
+        {% for post in post_list%}
+        <div class="col-md-3 p-3 m-2">
+          <div class="card mb">
+            <h5 class="card-title text-success text-center"><a class="text-primary" href="{{post.id}}">{{post.title}}</a></h5>
+            <a href="{{post.id}}" class="mask">
+              {% if post.image %}
+              <img
+                src="{{post.image.url}}"
+                alt="image"
+                class="img-responsive zoom-img rounded mx-auto d-block"
+                heigth ="100px"
+                width="100px"
+              />
+              {% endif %}
+            </a>
+                <div class="card-body mb">
+                  <p class="card-text">{{post.description}}</p>
+                  <a href="{{post.id}}" class="btn btn-success mb">Переглянути</a>
+                </div>
+              </div>
+        </div>
+        {%endfor%} 
+        {% comment %} {% for post in post_list%}
+            <div class="col-2 border">
+              <a href="{{post.id}}" class="mask">
+                {% if post.image %}
+                <img
+                  src="{{post.image.url}}"
+                  alt="image"
+                  class="img-responsive zoom-img"
+                  heigth ="100px"
+                  width="100px"
+                />
+                {% endif %}
+              </a>
+              <h3></h3>
+              <div class="links">
+                    <i class="fa blog-icon fa-calendar"> </i><span>{{post.date}}</span>
+              </div>
+              <p>
+                {{post.description}}
+              </p>
+              <a href="{{post.id}}" class="btn1 btn-8 btn-8c">Переглянути</a>
+              {% comment %} <div class="clearfix"></div> {% endcomment %}
+            {% comment %} </div> {% endcomment %}
+            {% comment %} <div class="clearfix"></div> {% endcomment %}
+        {% comment %} {%endfor%} {% endcomment %}  
+    </div>    
+  </div>
+</div>
+  
+
+{% endblock content %}

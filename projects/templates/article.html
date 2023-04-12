@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}
+{% endblock title %} 
+{% comment %} {% block header %}проекти{% endblock header %} {% endcomment %}
+{% block content %}
+<div class="container-fluid">
+  {% comment %} Додаткові методи {% endcomment %}
+  <div class="row">
+    <div class="col-md-12 blog_box">
+      <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i>Редагувати</a>
+      <a class="btn btn-default" href="{% url 'post_edit' pk=post.pk %}"><i class="fa fa-pencil" aria-hidden="true"></i>Видалити</a>
+    </div>
+  </div>
+  <div class="row p-2 m-0">
+    <div class="col-md-2 border">
+      <h4>Навігація</h4>
+      <h5>Заголовок1</h5>
+      <h5>Заголовок2</h5>
+      <h5>Заголовок3</h5>
+      <h5>Заголовок4</h5>
+    </div>
+    <div class="col-md-8 border"> 
+      <div class="header-h1">
+        <h1>{{post.title}}</h1>
+      </div>
+      <div class="context">
+        {% autoescape off %}
+      {{post.content|linebreaksbr}}
+      {% endautoescape %}
+      </div>
+     
+    </div>  
+    <div class="col-md-2 border">
+      <h4>Вся інформація</h4>
+    </div> 
+  </div>
+</div>
+
+
+
+{% endblock content %}

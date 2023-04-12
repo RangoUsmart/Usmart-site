@@ -1,0 +1,32 @@
+{% block header %}
+<section class=" site-header ">
+  <div class="container-fluid">
+    <div class="row p-0 m-0" >
+      <div class="col-2 p-0 m-0">
+        <div class="timer">
+          <div class="timer__items">
+            <div class="timer__item timer__days">00</div>
+            <div class="timer__item timer__hours">00</div>
+            <div class="timer__item timer__minutes">00</div>
+            <div class="timer__item timer__seconds">00</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-8 d-flex justify-content-center align-items-center">
+        <h3>Usmart</h3>
+      </div>
+      <div class="col-2 d-flex justify-content-center align-items-center" >
+        <div class="btn-group-vertical">
+          {% comment %} <a href="/admin" class="btn " role="button" aria-pressed="true"
+            >Вход/регистрация</a
+          > {% endcomment %}
+          {% comment %} <a href="#" class="btn " role="button" aria-pressed="true"
+            >регистрация</a
+          > {% endcomment %}
+          
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock header %}
