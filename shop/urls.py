@@ -7,11 +7,11 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path, re_path
+from django.urls import path
 # from django.conf.urls import url
 from shop import views
 app_name = 'shop' 
-urlpatterns = urlpatterns = [
+urlpatterns = [
     path('', views.product_list, name='product_list'),
     path('<slug:category_slug>/', views.product_list,
          name='product_list_by_category'

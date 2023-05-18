@@ -60,4 +60,15 @@ class MainUserSkill(models.Model):
     def __str__(self):
         return self.skill_name
     
-    
+class UserSocial(models.Model):
+    class Meta:
+        verbose_name = 'Соціальні медіа'
+        verbose_name_plural = 'Соціальні медіа'
+        
+    user_id = models.CharField(max_length=200)
+    social_id = models.ImageField(upload_to="cv/photo", help_text="Фото")
+    social_link = models.TextField(max_length=50, blank=True, null=True, help_text="Логін користувача")
+    social_icn = models.TextField(max_length=30, blank=True, null=True, help_text="Імя")
+    social_name = models.TextField(max_length=50, blank=True, null=True, help_text="Прізвище")    
+    def __str__(self):
+        return self.link

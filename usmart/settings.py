@@ -71,6 +71,7 @@ INSTALLED_APPS = [
     'cart.apps.CartConfig',
     'cv.apps.CvConfig',
     'login.apps.LoginConfig',
+    'orders.apps.OrdersConfig',
     # 'ProjectsConfig',
 # має бути в кінці
     'django_cleanup.apps.CleanupConfig',
