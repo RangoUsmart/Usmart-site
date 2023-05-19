@@ -3,3 +3,4 @@
 .sqlite3
 /.ipynb_checkpoints
 .idea
+__pycache__
