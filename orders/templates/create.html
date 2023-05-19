@@ -41,7 +41,7 @@
 
    
   <div id="liqpay_checkout"></div>
-  {{ html|safe }}
+  {% comment %} {{ html|safe }} {% endcomment %}
   <script>
     window.LiqPayCheckoutCallback = function() {
         LiqPayCheckout.init({
@@ -54,6 +54,7 @@
             console.log(data);
         }).on("liqpay.ready", function(data){
             // ready
+            console.log("hello");
         }).on("liqpay.close", function(data){
             // close
         });
