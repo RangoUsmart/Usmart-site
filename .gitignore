@@ -4,3 +4,5 @@
 /.ipynb_checkpoints
 .idea
 __pycache__
+/usmart/settings.py
+/migrations

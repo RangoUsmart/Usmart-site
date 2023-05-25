@@ -5,10 +5,9 @@ from .forms import PostForm
 
 # def rezume(request):
 #     return render(request, "cv.html")
-class RezumeView(View):
-    
+class RezumeView(View):  
     def get(self, request):
-        maininfo = get_object_or_404(MainUserInfo)
+        maininfo = MainUserInfo.objects.all()
         mainexp = MainUserExp.objects.all()
         mainskill =  MainUserSkill.objects.all()
         activeskill = mainskill.filter(skill_status ='a')

@@ -17,7 +17,7 @@
                             <th scope="col"> </th>
                             <th scope="col">Назва</th>
                             <th scope="col">наявність</th>
-                            <th scope="col" class="text-center">Кількість</th>
+                            <th scope="col" class="text-center" >Кількість</th>
                             <th scope="col" class="text-right">Ціна</th>
                             <th scope="col" class="text-right">Всього</th>
                             <th> </th>
@@ -34,7 +34,17 @@
                             </td>
                             <td>{{ product.name }}</td>
                             <td>In stock</td>
-                            <td><input class="form-control" type="text" value="{{ item.quantity }}" /></td>
+                            <td width="15%">
+                                <div class="input-group">
+                                    <span class="input-group-btn">
+                                    <button id="minus" class="btn btn-danger" type="button">-</button>
+                                    </span>
+                                    <input id="calc" type="text" class="form-control text-center" value="{{ item.quantity }}">
+                                    <span class="input-group-btn">
+                                    <button id="plus" class="btn btn-success" type="button">+</button>
+                                    </span>
+                                    </div><!-- /input-group -->
+                            </td>
                             <td class="text-right">${{ item.price }}</td>
                             <td class="text-right">${{ item.total_price }}</td>
                             <td class="text-right">
@@ -44,6 +54,8 @@
                              </button>  {% endcomment %}
                             </td>
                         </tr>
+                        {% endwith %}
+                    {% endfor %}
                         <tr>
                             <td></td>
                             <td></td>
@@ -53,8 +65,7 @@
                             <td><strong>До сплати</strong></td>
                             <td class="text-right"><strong>${{ cart.get_total_price }}</strong></td>
                         </tr>
-          {% endwith %}
-        {% endfor %}
+          
                     </tbody>
                 </table>
             </div>

@@ -51,6 +51,7 @@ class MainUserSkill(models.Model):
     class Meta:
         verbose_name = 'Навички'
         verbose_name_plural = 'Навички'
+    user_id = models.CharField(max_length=200)
     skill_id = models.CharField(max_length=4)    
     skill_name = models.TextField(max_length=100, blank=True, null=True, help_text="Назва")
     skill_count = models.CharField(max_length=4, help_text="Рівень навику")

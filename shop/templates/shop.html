@@ -9,7 +9,28 @@
 <div class="container-fluid">
     <div class="row p-0 m-0 bg-light">
     <div class="col-md-9">
-        <h3 class="text-left">{% if category %}{{ category.name }}{% else %}Всі продукти{% endif %}</h3>         
+        <nav class="navbar navbar-expand-sm  ">
+            <!-- Links -->
+            <ul class="navbar-nav m-0 p-0">
+                          
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}" id="navbardrop" data-toggle="dropdown">
+                    Всі категорії
+                </a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}">{% if category %}{{ category.name }}{% else %}Всі продукти{% endif %}</a>
+                    {% for c in categories %}
+                        <a
+                        class="dropdown-item"
+                        href="{{ c.get_absolute_url }}">{{ c.name }}
+                        </a>
+                    {% endfor %} 
+                  
+                </div>
+              </li>
+            </ul>
+        </nav>
+        {% comment %} <h3 class="text-left">{% if category %}{{ category.name }}{% else %}Всі продукти{% endif %}</h3>          {% endcomment %}
     </div>
     <div class="col-md-3">
         <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 m-0">
@@ -37,49 +58,33 @@
         
 <div class="row p-3 m-2">
     <div class="col-md-2 border">
-        <nav class="navbar navbar-expand-sm  ">
-            <!-- Links -->
-            <ul class="navbar-nav m-0 p-0">
-                          
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}" id="navbardrop" data-toggle="dropdown">
-                    Всі категорії
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}">Всі категорії</a>
-                    {% for c in categories %}
-                        <a
-                        class="dropdown-item"
-                        href="{{ c.get_absolute_url }}">{{ c.name }}
-                        </a>
-                    {% endfor %} 
-                  
-                </div>
-              </li>
-            </ul>
-        </nav>
        <p> Сортування</p>
     </div>
     <div class="col-md-10 border">
         <div class="row">
             {% for product in products %}
-            <div class="col-md-3 p-3 m-2 col-sm-6">
-                <div class="product-grid">
-                    <div class="product-image">
-                        <a href="{{ product.get_absolute_url }}">
-                            <img class="pic-1" src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}">
-                            {% comment %} <img class="pic-2" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"> {% endcomment %}
-                        </a>
-                    </div>
-                    <div class="product-content">
+            <div class="col-md-3 p-3 m-2">
+                <div class="card mb">
+                  <h5 class="card-title text-success text-center"><a class="text-primary" href="{{post.id}}">{{post.title}}</a></h5>
+                  <a href="{{post.id}}" class="mask">
+                    {% if post.image %}
+                    <img
+                      src="src="{% if product.image %}{{ product.image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}""
+                      alt="image"
+                      class="img-responsive zoom-img rounded mx-auto d-block"
+                      heigth ="100px"
+                      width="100px"
+                    />
+                    {% endif %}
+                  </a>
+                      <div class="card-body mb">
                         <h3 class="title"><a href="{{ product.get_absolute_url }}">{{ product.name }}</a></h3>
-                        <div class="price"> ${{ product.price }}
-                            <span> ${{ product.price }}</span>
-                        </div>
-                        <a class="add-to-cart" href="">+ Add To Cart</a>
-                    </div>        
-                </div>
-            </div>
+                        <p class="card-text"><span> ${{ product.price }}</span></p>
+                        <a href="{{ product.get_absolute_url }}" class="btn btn-success mb">Переглянути</a>
+                      </div>
+                    </div>
+              </div>
+            
             {% endfor %}
         </div>
     </div>

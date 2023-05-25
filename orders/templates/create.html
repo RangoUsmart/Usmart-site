@@ -4,62 +4,102 @@
  {% block title %}  Оформлення замовлення {% endblock %} 
   {% block content %}
 <div class="container-fluid">
-  <div class="row p-0 m-0 bg-light">
+  <div class="row p-1 m-0 bg-light">
     <div class="col-md-9">
       <h3 class="text-left">Оплата</h3>
     </div>
     <div class="col-md-3">
-      <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 m-0">
-        <button
-          class="navbar-toggler"
-          type="button"
-          data-toggle="collapse"
-          data-target="#navbarTogglerDemo03"
-          aria-controls="navbarTogglerDemo03"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-          <ul class="navbar-nav mx-auto mr-auto mt-0 mt-lg-0">
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa fa-bars" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"
-                ><i class="fa fa-calculator" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-        </div>
-      </nav>
+
     </div>
   </div>
+  <div class="row p-1 m-2">
+    <div class="col-md-3 m-2 bg-light rounded border ">
+      <h4>Контактні дані</h4>
+      <table>
+        <tr>
+          <td>
+          <label for="ordersurname">Прізвище</label>
+            <input id="ordersurname" class="form-control" type="text" value="" /></td>
+        </tr>
+        <tr>
+          <td><label for="ordername">Ім'я</label>
+            <input id="ordername" class="form-control" type="text" value="" /></td>
+        </tr>
+        <tr>
+          <td><label for="orderphone">Номер телефону</label>
+            <input id="orderphone" class="form-control" type="text" value="" /></td>
+        </tr>
+        <tr>
+          <td><label for="orderpost">Пошта</label>
+            <input id="orderpost" class="form-control" type="text" value="" /></td>
+        </tr>
+        <tr>
+          {% comment %} <td><strong>Доставка</strong></td>
+          <td><input id="orderpost" class="form-control" type="button" value="" /></td>
+        </tr>
+        <tr>
+          <td><strong>До сплати</strong></td>
+          <td class="text-right"><strong>${{ cart.get_total_price }}</strong></td>
+        </tr>       {% endcomment %}
+      </table>
+    </div>
+    <div class="col-md-8  m-2 bg-light rounded border">
+      <h4>Товари</h4>
+        <div class="table-scroll">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                  <th scope="col"> </th>
+                  <th scope="col">Назва</th>
+                  <th scope="col" class="text-center">Кількість</th>
+                  <th scope="col" class="text-right">Ціна</th>
+                  <th scope="col" class="text-right">Всього</th>
+                  <th> </th>
+              </tr>
+          </thead>
+          </table>   
+          <div class="table-scroll-body">
+              <table>
+                <tbody>
+                  {% for item in cart %}
+                  {% with product=item.product %}
+                    <tr>
+                      <td >
+                        <a href="{{ product.get_absolute_url }}">
+                          <img class="miniimg" src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.png' %}{% endif %}">
+                        </a>
+                      </td>
+                      <td>{{ product.name }}</td>
+                      <td>{{ item.quantity }}</td>
+                      <td class="text-right">${{ item.price }}</td>
+                      <td class="text-right">${{ item.total_price }}</td>
+                      <td class="text-right">
+                        <a class="btn btn-sm btn-danger" href="{% url 'cart:cart_remove' product.id %}"><i class="fa fa-trash"></i></a>
+                        {% comment %} <button class="btn btn-sm btn-danger">
+                        <i class="fa fa-trash"></i>
+                      </button>  {% endcomment %}
+                      </td>
+                    </tr>
+                  {% endwith %}
+                  {% endfor %}
+                </tbody>
+              </table>
+          </div> 
+      </div>
+    </div>   
+</div>
+<div class="row p-1 m-2 ">
 
-   
-  <div id="liqpay_checkout"></div>
-  {{ html|safe }}
-  {% comment %} <script>
-    window.LiqPayCheckoutCallback = function() {
-        LiqPayCheckout.init({
-            data: "{{ data }}",
-            signature: "{{ signature }}",
-            embedTo: "#liqpay_checkout",
-            mode: "embed" // embed || popup,
-        }).on("liqpay.callback", function(data){
-            console.log(data.status);
-            console.log(data);
-        }).on("liqpay.ready", function(data){
-            // ready
-            console.log("hello");
-        }).on("liqpay.close", function(data){
-            // close
-        });
-    };
-</script>
-<script src="//static.liqpay.ua/libjs/checkout.js" async></script> {% endcomment %}
+  <div class="col-md-3  m-2 bg-light rounded border">
+    <h4>Доставка</h4>
+  </div>
+  <div class="col-md-4  m-2 bg-light rounded border">
+    <h4>Всього</h4>
+    До сплати$ {{ cart.get_total_price }}
+  </div>
+  <div class="col-md-4 m-2 bg-light rounded border">
+    {{html|safe}}
+  </div>
+</div> 
 </div>
 {% endblock %}
