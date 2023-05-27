@@ -6,16 +6,16 @@ from ckeditor.fields import RichTextField
 class MainUserInfo(models.Model):
     class Meta:
         verbose_name = 'Основна інформація'
-        verbose_name_plural = 'Резюме'
+        verbose_name_plural = 'Персона'
         
-    user_id = models.CharField(max_length=200)
+    user_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
     user_image = models.ImageField(upload_to="cv/photo", help_text="Фото")
-    user_login = models.TextField(max_length=50, blank=True, null=True, help_text="Логін користувача")
-    user_name = models.TextField(max_length=30, blank=True, null=True, help_text="Імя")
-    user_sur_name = models.TextField(max_length=50, blank=True, null=True, help_text="Прізвище")
+    user_login = models.CharField(max_length=50, blank=True, null=False, help_text="Логін користувача")
+    user_name = models.CharField(max_length=30, blank=True, null=True, help_text="Імя")
+    user_sur_name = models.CharField(max_length=50, blank=True, null=True, help_text="Прізвище")
     user_birthday =models.DateTimeField(blank=True, null=True, help_text="Дата народження")
-    user_email = models.TextField(max_length=100, blank=True, null=True, help_text="Електронна пошта")
-    user_phone = models.TextField(max_length=12, blank=True, null=True, help_text="Телефон")
+    user_email = models.EmailField()
+    user_phone = models.PositiveIntegerField( blank=True, null=True, help_text="Телефон")
     user_site = models.TextField(max_length=100, blank=True, null=True, help_text="Сайт")
     reg_date = models.DateTimeField(auto_now=True)
     user_subscribe = RichTextField(max_length=5000, blank=True, null=True, help_text="Короткий опис")
@@ -27,8 +27,7 @@ class MainUserExp(models.Model):
     class Meta:
         verbose_name = 'Досвід'
         verbose_name_plural = 'Досвід роботи'
-        
-    work_id = models.CharField(max_length=4, blank=True,)
+    person = models.ForeignKey('MainUserInfo', on_delete=models.CASCADE)
     work_company = models.TextField(max_length=100, blank=True, null=True, help_text="Назва компанії")
     work_position = models.TextField(max_length=100, blank=True, null=True, help_text="Імя")
     work_description = models.TextField(max_length=100, blank=True, null=True, help_text="Прізвище")
@@ -51,7 +50,8 @@ class MainUserSkill(models.Model):
     class Meta:
         verbose_name = 'Навички'
         verbose_name_plural = 'Навички'
-    user_id = models.CharField(max_length=200)
+        
+    person = models.ForeignKey('MainUserInfo', on_delete=models.CASCADE) 
     skill_id = models.CharField(max_length=4)    
     skill_name = models.TextField(max_length=100, blank=True, null=True, help_text="Назва")
     skill_count = models.CharField(max_length=4, help_text="Рівень навику")
@@ -61,15 +61,20 @@ class MainUserSkill(models.Model):
     def __str__(self):
         return self.skill_name
     
-class UserSocial(models.Model):
+class MainUserSocial(models.Model):
+    CHOICES = (
+        ('fb', 'Фейсбук'),
+        ('linkid', 'Лінкайді'),
+        ('utube', 'Ютуб')
+    )
+    
     class Meta:
         verbose_name = 'Соціальні медіа'
         verbose_name_plural = 'Соціальні медіа'
         
-    user_id = models.CharField(max_length=200)
-    social_id = models.ImageField(upload_to="cv/photo", help_text="Фото")
-    social_link = models.TextField(max_length=50, blank=True, null=True, help_text="Логін користувача")
-    social_icn = models.TextField(max_length=30, blank=True, null=True, help_text="Імя")
-    social_name = models.TextField(max_length=50, blank=True, null=True, help_text="Прізвище")    
+    person = models.ForeignKey('MainUserInfo', on_delete=models.CASCADE) 
+    social_id = models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')
+    social_link = models.URLField(max_length=50, blank=True, null=True, help_text="Посилання")
+    social_name = models.CharField(max_length=7, choices=CHOICES, help_text="Назва")   
     def __str__(self):
-        return self.link
+        return self.social_name

@@ -15,49 +15,45 @@
 <div class="container-fluid bg-dark">
     {% comment %} <a class="navbar-brand" href="#">Usmart</a> {% endcomment %}
     <div class="row p-0 m-0">
-      <div class="col-2 d-flex justify-content-center align-items-center"">
+      <div class="col-3 d-flex justify-content-center align-items-center">
         <a class="nav-link text-white bg-dark" href="/"><i class="fa fa-search" aria-hidden="true"></i></a>
       </div>
-      <div class="col-sm-8 d-flex justify-content-center align-items-center">
-        <nav class="sticky-top navbar navbar-expand navbar-dark p-0 m-0">
-        <ul class="nav clearfix navbar-nav justify-content-center">
-          <li class="nav-item">
-            <a class="nav-link text-white bg-dark" href="/">Головна</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link  text-white bg-dark" href="/shop">Магазин</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white bg-dark" href="/projects">Проекти</a>
-          </li>
-          <li class="nav-item text-white bg-dark">
-            <a class="nav-link text-white bg-dark" href="/cv">Про мене</a>
-          </li>
-        </ul>
+      <div class="col-sm-6 d-flex justify-content-center align-items-center">
+          <nav class="sticky-top navbar navbar-expand navbar-dark p-0 m-0">
+          <ul class="nav clearfix navbar-nav justify-content-center">
+            <li class="nav-item">
+              <a class="nav-link text-white bg-dark" href="/">Головна</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link  text-white bg-dark" href="/shop">Магазин</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white bg-dark" href="/projects">Проекти</a>
+            </li>
+            <li class="nav-item text-white bg-dark">
+              <a class="nav-link text-white bg-dark" href="/cv">Про мене</a>
+            </li>
+          </ul>
         {% comment %} <a class="" href="#">Мій Кабінет</a> {% endcomment %}
-      </nav>
+          </nav>
       </div>
-      <div class="col-2 d-flex justify-content-center align-items-center">
-        
-
+      <div class="col-3 d-flex justify-content-center align-items-center">
         <div id="subheader">
-          {% with total_items=cart|length %}
-                {% if cart|length > 0 %}
-                    <a class="btn text-white bg-dark" href="{% url "cart:cart_detail" %}">
-                      <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                        {{ total_items }} {{ total_items|pluralize }},
-                        ${{ cart.get_total_price }}
-                    </a>
-                {% else %}
-                <a class="btn text-white bg-dark" href="{% url "cart:cart_detail" %}">
-                  <i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                </a>
-                {% endif %}
+            {% with total_items=cart|length %}
+                  {% if cart|length > 0 %}
+                      <a class="btn text-white bg-dark" href="{% url "cart:cart_detail" %}">
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                          {{ total_items }} {{ total_items|pluralize }},
+                          ${{ cart.get_total_price }}
+                      </a>
+                  {% else %}
+                  <a class="btn text-white bg-dark" href="{% url "cart:cart_detail" %}">
+                    <i class="fa fa-shopping-cart" aria-hidden="true"></i>
+                  </a>
+                  {% endif %}
             {% endwith %}
-      </div>
+        </div>
       </div>
     </div>
-  
-</div>
-<div>{% block plugin %} {% endblock plugin %}</div>
+  </div>
 {% endblock navigation %}

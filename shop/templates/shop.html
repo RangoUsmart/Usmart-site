@@ -5,57 +5,8 @@
     {% if category %}{{ category.name }}{% else %}Магазин{% endif %}
 {% endblock %}
 {% block content %}
-
-<div class="container-fluid">
-    <div class="row p-0 m-0 bg-light">
-    <div class="col-md-9">
-        <nav class="navbar navbar-expand-sm  ">
-            <!-- Links -->
-            <ul class="navbar-nav m-0 p-0">
-                          
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}" id="navbardrop" data-toggle="dropdown">
-                    Всі категорії
-                </a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item btn btn-outline-success btn-block" href="{% url 'shop:product_list' %}">{% if category %}{{ category.name }}{% else %}Всі продукти{% endif %}</a>
-                    {% for c in categories %}
-                        <a
-                        class="dropdown-item"
-                        href="{{ c.get_absolute_url }}">{{ c.name }}
-                        </a>
-                    {% endfor %} 
-                  
-                </div>
-              </li>
-            </ul>
-        </nav>
-        {% comment %} <h3 class="text-left">{% if category %}{{ category.name }}{% else %}Всі продукти{% endif %}</h3>          {% endcomment %}
-    </div>
-    <div class="col-md-3">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light p-0 m-0">
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>    
-            <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
-              <ul class="navbar-nav mr-auto mt-0 mt-lg-0">
-                
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fa fa-bars" aria-hidden="true"></i>
-                  </a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#"><i class="fa fa-calculator" aria-hidden="true"></i>
-                  </a>
-                </li>
-              </ul>
-            </div>
-        </nav>
-    </div>
-</div>
-   
-          
-        
+{% include "submenu.html" %}
+ 
 <div class="row p-3 m-2">
     <div class="col-md-2 border">
        <p> Сортування</p>

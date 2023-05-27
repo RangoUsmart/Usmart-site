@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    
     "daphne",
     'django.contrib.admin',
     'django.contrib.auth',
@@ -74,6 +75,7 @@ INSTALLED_APPS = [
     'orders.apps.OrdersConfig',
     # 'ProjectsConfig',
 # має бути в кінці
+    # 'south' ,
     'django_cleanup.apps.CleanupConfig',
 ]
 

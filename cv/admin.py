@@ -1,9 +1,8 @@
 from django.contrib import admin
-from .models import MainUserInfo, MainUserExp, MainUserSkill
+from .models import MainUserInfo, MainUserExp, MainUserSkill, MainUserSocial
 
 class MainUserInfoAdmin(admin.ModelAdmin):
     list_display = [
-        'user_id',
         'user_login',
         'user_name',
         'user_image',
@@ -12,28 +11,28 @@ class MainUserInfoAdmin(admin.ModelAdmin):
         'user_email',
         'user_phone',
         'user_site',
-        'reg_date',
         'user_subscribe',
         ]
     # list_filter = ['available', 'created', 'updated']
     list_editable = ['user_phone', 'user_subscribe', 'user_image']
-    # fields = ['user_id','user_id',
-    #     'user_login',
-    #     'user_name',
-    #     'user_image',
-    #     'user_sur_name',
-    #     'user_birthday',
-    #     'user_email',
-    #     'user_phone',
-    #     'user_site',
-    #     'reg_date',
-    #     'user_subscribe',]
+    fields = (
+       ( 'user_login',
+        'user_name',
+        'user_sur_name'),
+       
+        ('user_birthday',
+        'user_email',
+        'user_phone',
+        'user_site'),
+        
+        'user_image',
+        'user_subscribe',)
     # prepopulated_fields = {'slug': ('user_name',)}
 admin.site.register(MainUserInfo, MainUserInfoAdmin)
 
 class MainUserExpAdmin(admin.ModelAdmin):
     list_display = [
-        'work_id',
+        'person',
         'work_company',
         'work_position',
         'work_description',
@@ -49,7 +48,7 @@ admin.site.register(MainUserExp, MainUserExpAdmin)
 
 class MainUserSkillAdmin(admin.ModelAdmin):
     list_display = [
-        'skill_id',
+        'person',
         'skill_name',
         'skill_count',
         'skill_status',
@@ -61,3 +60,17 @@ class MainUserSkillAdmin(admin.ModelAdmin):
                      ]
     # prepopulated_fields = {'slug': ('work_company',)}
 admin.site.register(MainUserSkill, MainUserSkillAdmin)
+
+class MainUserSocialAdmin(admin.ModelAdmin):
+    list_display = [
+        'person',
+        'social_id',
+        'social_link',
+        'social_name',
+        ]
+    # list_filter = ['available', 'created', 'updated']
+    list_editable = ['social_link',
+                     'social_name',
+                     ]
+    # prepopulated_fields = {'slug': ('work_company',)}
+admin.site.register(MainUserSocial, MainUserSocialAdmin)

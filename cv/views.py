@@ -7,15 +7,17 @@ from .forms import PostForm
 #     return render(request, "cv.html")
 class RezumeView(View):  
     def get(self, request):
-        maininfo = MainUserInfo.objects.all()
+        # print(1)
+        maininfo = MainUserInfo.objects.get(user_login="Rango")
         mainexp = MainUserExp.objects.all()
         mainskill =  MainUserSkill.objects.all()
         activeskill = mainskill.filter(skill_status ='a')
         passskill = mainskill.filter(skill_status ='b')
         planskill = mainskill.filter(skill_status ='c')
+        print(maininfo)
         return render(request, 'cv.html', {'maininfo': maininfo, 
                                             'mainexp': mainexp, 
-                                            'mainskill': mainskill[0:5],
+                                            'mainskill': mainskill,
                                             'passskill': passskill,
                                             'planskill': planskill,
                                             'activeskill': activeskill,
