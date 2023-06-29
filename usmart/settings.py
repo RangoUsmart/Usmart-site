@@ -77,6 +77,7 @@ INSTALLED_APPS = [
 # має бути в кінці
     # 'south' ,
     'django_cleanup.apps.CleanupConfig',
+    'rest_framework',
 ]
 
 SITE_ID=1
@@ -342,3 +343,11 @@ APPEND_SLASH = True
 CART_SESSION_ID = 'cart'
 
 LOGIN_REDIRECT_URL =  '/'
+# https://www.django-rest-framework.org/
+REST_FRAMEWORK = {
+    # Use Django's standard `django.contrib.auth` permissions,
+    # or allow read-only access for unauthenticated users.
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
+    ]
+}

@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-md-4 col-xl-4 a2">
                     <img src="{% if maininfo.user_image %}{{ maininfo.user_image.url }}{% else %}{% static "img/no_image.png" %}{% endif %}" width="200px" height="200px" alt="фото"
-                        class="img-fluid mx-auto d-block border border-success img-fluid rounded-circle">
+                        class=" mx-auto d-block border border-success rounded-circle">
                     <div class="container-fluid text-center">
                         <div class="der">
                             <a href="https://www.facebook.com/p.tsvietkov"><i class="fa fa-facebook"></i></a>
@@ -62,6 +62,7 @@
                 </div>
                 <!-- Скіли -->
                 <div class=" col-md-4 col-xl-4 p-2 a3 border" title="Нажміть для виведення деталей" id="skill">
+                    <a href="#skills">
                     {% for skill in mainskill%}
                         <h6 class="progressbar-title">{{ skill.skill_name}}</h6>
                         <div class="progress">
@@ -71,11 +72,10 @@
                         </div>
 
                     {%endfor%}
+                    </a>
                 </div>
             </div>
-    </section>
-
-    <section class="b">
+    
             <div class="row p-3 m-0 text-center">
                 <div class="col-md-4 col-sm-6">
                     <div class="serviceBox">
@@ -83,11 +83,11 @@
                             <i class="bi bi-person-vcard"></i>
                         </div>
                         <div class="service-content">
-                            <h3><a href="#">Досвід роботи</a></h3>
+                            <h3><a href="#expirience">Досвід роботи</a></h3>
                             <p>Таймлайн моєї роботи. Яку користь я приносив собі та людям</p>
                         </div>
                         <div class="read">
-                            <a href="#" class="btn btn-default" id="btn1">Докладніше</a>
+                            <a href="#expirience" class="btn btn-default" id="btn1">Докладніше</a>
                         </div>
                     </div>
                 </div>
@@ -128,9 +128,9 @@
         </div>
     </section>
 
-    <section class="c">
+    <section class="b" id="expirience">
         <div class="container">
-        <div class="header-h1 header-h1-center">
+        <div  class="header-h1 header-h1-center">
             <h1>Досвід</h1>
         </div>
         <div class="row p-3 m-0">
@@ -139,12 +139,20 @@
         </div>
     </section>
 
-    <section class="d">
+    <section class="c" id="skills">
         <div class="container">
         <div class="header-h1 header-h1-center">
             <h1>Навики</h1>
         </div>
             {% include "modal_skill.html"  %}
+        </div>
+    </section>
+    <section class="d" id="dock">
+        <div class="container">
+        <div class="header-h1 header-h1-center">
+            <h1>Документи та сертифікати</h1>
+        </div>
+            {% include "modal_document.html"  %}
         </div>
     </section>
 </div>
