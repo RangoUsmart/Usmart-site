@@ -4,7 +4,7 @@ from .forms import OrderCreateForm
 from cart.cart import Cart
 import os
 
-from liqpay import LiqPay
+# from liqpay import LiqPay
 from django.utils.decorators import method_decorator
 from django.views.decorators.csrf import csrf_exempt
 
